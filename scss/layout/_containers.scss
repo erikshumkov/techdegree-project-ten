@@ -1,0 +1,71 @@
+/*===========================================
+// Containers
+//==========================================*/
+
+.container {
+  display: grid;
+  max-width: 80%;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  & a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.card {
+  @include flexify($dir: row, $just: flex-start, $align: center);
+  background: #fff;
+  border: 2px solid rgba(0,0,0, 0.1);
+  border-radius: 7px;
+  transition: transform .5s, box-shadow .5s;
+  will-change: transform, box-shadow;
+  & img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 100px;
+  }
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 27px 15px -20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0,0,0, 0.5);
+}
+
+.modal__window {
+  background: #fff;
+  border: 2px solid rgba(0,0,0, 0.1);
+  border-radius: 8px;
+  position: fixed;
+  transform: translate3d(143%, 9%, 0);
+  padding: 20px;
+  width: 23%;
+  text-align: center;
+  will-change: transform, opacity;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0, 0.2),
+              0 7px 20px 0 rgba(0,0,0, 0.2);
+  & img {
+    border-radius: 50%;
+    margin-top: 25px;
+  }
+  & h3 {
+    margin: 2px;
+    text-transform: capitalize;
+  }
+}
+
+.card, .modal__window, .next, .prev {
+  @extend %no-text-select;
+}

@@ -1,0 +1,50 @@
+/*===========================================
+// Mixins
+//==========================================*/
+
+// Flexbox containers
+@mixin flexify(
+  $disp: flex,
+  $dir: null,
+  $just: null,
+  $align: null,
+  $wrap: null ) {
+    display: $disp;
+    flex-direction: $dir;
+    justify-content: $just;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+// Media Queries
+@mixin medq($break) {
+  @if $break == "xsmall" {
+    @media (min-width: $mq-xs) and
+     (max-width: $mq-m) {
+       @content;
+     }
+  }
+  @else if $break == "small" {
+    @media (min-width: $mq-s) {
+      @content;
+    }
+  }
+  @else if $break == "medium" {
+    @media (min-width: $mq-m) {
+      @content;
+    }
+  }
+  @else if $break == "large" {
+    @media (min-width: $mq-l) {
+      @content;
+    }
+  }
+  @else if $break == "xlarge" {
+    @media (min-width: $mq-xl) {
+      @content;
+    }
+  }
+  @else {
+    @error "`#{$break}` Media query don't work properly."
+  }
+}

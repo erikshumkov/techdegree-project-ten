@@ -1,0 +1,26 @@
+/*===========================================
+// Base Styles
+//==========================================*/
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background: rgb(252,252,252);
+}
+
+header {
+  @include flexify($dir: row, $just: space-between);
+  width: 80%;
+  margin: auto;
+  height: 100px;
+}
+
+main {
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+footer {
+  height: 100px;
+}

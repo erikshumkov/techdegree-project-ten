@@ -1,0 +1,31 @@
+/*===========================================
+// Placeholders
+//==========================================*/
+
+// Animations
+  // Open modal.
+.openBox {
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+  // Next member window.
+.nextBox {
+  animation-name: modalNext;
+  animation-duration: 1.5s;
+}
+  // Previous member window.
+.prevBox {
+  animation-name: modalPrev;
+  animation-duration: 1.5s;
+}
+
+// No text select
+%no-text-select {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
