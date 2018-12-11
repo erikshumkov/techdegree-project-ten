@@ -3,9 +3,11 @@
 //==========================================*/
 
 .headline {
+  font-family: $font-stack-headline;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: lighter;
+  letter-spacing: 1px;
   align-self: center;
 }
 
@@ -17,41 +19,34 @@
   }
   & p {
     margin: 0;
-    color: rgba(0,0,0, 0.5);
+    color: $paragraph-color;
     font-size: 13px;
+    &:last-of-type {
+      text-transform: capitalize;
+    }
   }
 }
 
-.modal-p {
-  margin: 2px auto;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
-  width: 90%;
-}
-
-.modal-p2 {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
-}
-
-.modal-p2-top {
-  padding-top: 10px;
-}
-
-.modal-p-border {
-  text-transform: capitalize;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 20px;
-}
-
-.location {
-  text-transform: capitalize;
-}
-
-.picture {
-  margin: 20px 10px 20px 20px;
-}
-
-.city {
-  text-transform: capitalize;
+.modalwindow {
+  &__p {
+    margin: 2px auto;
+    color: $modalwindow-p-color;
+    font-size: 14px;
+    width: 90%;
+    &--border {
+      text-transform: capitalize;
+      border-bottom: $modalwindow-border;
+      padding-bottom: 20px;
+    }
+  }
+  &__p2 {
+    color: $modalwindow-p-color;
+    font-size: 14px;
+    &--top {
+      padding-top: 10px;
+    }
+    &--location {
+      text-transform: capitalize;
+    }
+  }
 }

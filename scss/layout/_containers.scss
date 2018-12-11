@@ -6,18 +6,21 @@
   display: grid;
   max-width: 80%;
   margin: 0 auto;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-gap: 30px;
   & a {
     text-decoration: none;
-    color: #000;
+    color: $black;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
 .card {
   @include flexify($dir: row, $just: flex-start, $align: center);
-  background: #fff;
-  border: 2px solid rgba(0,0,0, 0.1);
+  background: $card-background;
+  border: $card-border;
   border-radius: 7px;
   transition: transform .5s, box-shadow .5s;
   will-change: transform, box-shadow;
@@ -28,8 +31,12 @@
   }
   &:hover {
     transform: scale(1.01);
-    box-shadow: 0 27px 15px -20px rgba(0, 0, 0, 0.2);
+    box-shadow: $card-boxshadow;
   }
+}
+
+.picture {
+  margin: 20px 10px 20px 20px;
 }
 
 .modal {
@@ -41,21 +48,21 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: rgba(0,0,0, 0.5);
+  background: $modal-background;
 }
 
 .modal__window {
-  background: #fff;
-  border: 2px solid rgba(0,0,0, 0.1);
+  background: $card-background;
+  border: $modalwindow-border2;
   border-radius: 8px;
   position: fixed;
-  transform: translate3d(143%, 9%, 0);
+  transform: translate3d(563px, 115px, 0);
+  height: 400px;
   padding: 20px;
   width: 23%;
   text-align: center;
   will-change: transform, opacity;
-  box-shadow: 0 5px 8px 0 rgba(0,0,0, 0.2),
-              0 7px 20px 0 rgba(0,0,0, 0.2);
+  box-shadow: $modalwindow-boxshadow;
   & img {
     border-radius: 50%;
     margin-top: 25px;

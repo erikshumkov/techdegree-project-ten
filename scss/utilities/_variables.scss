@@ -4,6 +4,18 @@
 
 // Colors
 $black: #000;
+// Background Colors
+$body-background: rgb(252,252,252);
+$card-background: #fff;
+$modal-background: rgba(0,0,0, 0.5);
+$search-background: rgba(0,0,0, 0.05);
+$search-bg-focus: rgba(0,0,0, 0.1);
+// Button Colors
+$close-button: #ccc;
+$arrow-buttons: rgba(0, 0, 0, 0.2);
+// Paragraph color
+$paragraph-color: rgba(0,0,0, 0.5);
+$modalwindow-p-color: rgba(0, 0, 0, 0.6);
 
 // Media Query Breakpoints
 $mq-xs    : 1px;
@@ -13,7 +25,13 @@ $mq-l     : 1024px;
 $mq-xl    : 1100px;
 
 // Font Stacks, Font Family
-
+$font-stack-headline: 'Source Sans Pro', sans-serif;
 
 // Border
-$primary-border: 1px solid grey;
+$card-border: 2px solid rgba(0,0,0, 0.1);
+$modalwindow-border2: 2px solid rgba(0,0,0, 0.1);
+$modalwindow-border: 1px solid rgba(0, 0, 0, 0.2);
+
+// Box Shadow
+$card-boxshadow: 0 27px 15px -20px rgba(0, 0, 0, 0.2);
+$modalwindow-boxshadow: 0 5px 8px 0 rgba(0,0,0, 0.2), 0 7px 20px 0 rgba(0,0,0, 0.2);

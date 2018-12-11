@@ -16,7 +16,7 @@ function fetchIt(url) {
   return fetch(url)
           .then(checkOK)
           .then(res => res.json())
-          .catch(error => console.log("Fetch didn't work properly", error))
+          .catch(error => console.log("Fetch didn't work properly", error));
 }
 
 fetchIt('https://randomuser.me/api/?results=12&nat=us')
@@ -26,7 +26,6 @@ fetchIt('https://randomuser.me/api/?results=12&nat=us')
       for(i; i < fetches[0].results.length; i++) {
         const results = fetches[0].results;
         const aTag = document.createElement('a');
-        aTag.setAttribute("href", "#");
         container.appendChild(aTag);
 
         let html = `
@@ -35,15 +34,15 @@ fetchIt('https://randomuser.me/api/?results=12&nat=us')
             <img src='${results[i].picture.large}'>
           </div>
           <div class="info">
-            <h3 class="name">${results[i].name.first} ${results[i].name.last}</h3>
-            <p class="mail">${results[i].email}</p>
-            <p class="city">${results[i].location.city}</p>
+            <h3>${results[i].name.first} ${results[i].name.last}</h3>
+            <p>${results[i].email}</p>
+            <p>${results[i].location.city}</p>
           </div>
         </div>
         `;
         aTag.innerHTML = html;
       }
-  })
+  });
 
   container.addEventListener( 'click', (e) => {
       const tag = e.target.tagName;
@@ -51,10 +50,11 @@ fetchIt('https://randomuser.me/api/?results=12&nat=us')
       if (tag == 'A' || divClassName == 'card' || tag == 'P' || tag == 'H3' || tag == 'IMG') {
         modalWindow.classList.add('openBox');
         openModal();
-        modalWindowContent();
+        setTimeout( () => { modalWindow.classList.add('stretch'); }, 300);
+        setTimeout( () => { modalWindowContent(); }, 600);
       }
-      setTimeout( () => { modalWindow.className = "modal__window"; }, 1100);
-  })
+      setTimeout( () => { modalWindow.className = "modal__window"; }, 610);
+  });
 
 // Functions
 
@@ -64,18 +64,22 @@ function openModal() {
 
 function closeModal() {
   modal.style.display = "none";
+  modalWindow.innerHTML = '';
 }
 
 // Close modal window with outside click.
 function clickOutside(e) {
   if(e.target == modal) {
     modal.style.display = "none";
+    modalWindow.innerHTML = '';
   }
 }
 
 // Get the index of selected card div.
+// Credit to: https://stackoverflow.com/questions/44185632/get-index-of-class-element-with-inline-onclick-pure-js-no-jquery
 function getDivIndex(div) {
-  const divs = Array.prototype.slice.call( document.querySelectorAll('.card'), 0 );
+  const cards = document.querySelectorAll('.card');
+  const divs = Array.prototype.slice.call( cards, 0 );
   cardNumber = divs.indexOf(event.currentTarget);
 }
 
@@ -85,14 +89,14 @@ function modalWindowContent() {
     <span class="close-window">&times;</span>
     <a class="prev" onclick="actions.leftArrow()">&#10094;</a>
     <a class="next" onclick="actions.rightArrow()">&#10095;</a>
-    <img class="modal-img" src='${results[cardNumber].picture.large}'>
+    <img class="modalwindow__img" src='${results[cardNumber].picture.large}'>
     <h3>${results[cardNumber].name.first} ${results[cardNumber].name.last}</h3>
-    <p class="modal-p">${results[cardNumber].email}</p>
-    <p class="modal-p modal-p-border">${results[cardNumber].location.city}</p>
+    <p class="modalwindow__p">${results[cardNumber].email}</p>
+    <p class="modalwindow__p modalwindow__p--border">${results[cardNumber].location.city}</p>
 
-    <p class="modal-p2 modal-p2-top">${results[cardNumber].cell}</p>
-    <p class="modal-p2 location">${results[cardNumber].location.street} ${results[cardNumber].location.city}, ${results[cardNumber].location.state} ${results[cardNumber].location.postcode}</p>
-    <p class="modal-p2">Birthday: ${results[cardNumber].dob.date.substring(0, 10)}</p>
+    <p class="modalwindow__p2 modalwindow__p2--top">${results[cardNumber].cell}</p>
+    <p class="modalwindow__p2 modalwindow__p2--location">${results[cardNumber].location.street} ${results[cardNumber].location.city}, ${results[cardNumber].location.state} ${results[cardNumber].location.postcode}</p>
+    <p class="modalwindow__p2">Birthday: ${results[cardNumber].dob.date.substring(0, 10)}</p>
   `;
   modalWindow.innerHTML = modalHTML;
   const closeBtn = document.querySelector('.close-window');
@@ -119,24 +123,25 @@ function searchFunction() {
         // Get the usernames of each member.
         let username = fetches[0].results[i].login.username;
         if (headlineName.innerHTML.toUpperCase().indexOf(searchValue) > -1 || username.toUpperCase().indexOf(searchValue) > -1) {
-            links[i].style.display = "";
+            links[i].style.display = '';
         } else {
-            links[i].style.display = "none";
+            links[i].style.display = 'none';
         }
     }
 }
 
 function addAnimation(animationType) {
   modalWindow.classList.add(`${animationType}`);
-  actions.newInfo();
+  newInfo();
+}
+
+// New member content.
+function newInfo() {
+  modalWindow.innerHTML = '';
+  modalWindowContent();
 }
 
 const actions = {
-  // New member content.
-  newInfo: () => {
-    modalWindow.innerHTML = '';
-    modalWindowContent();
-  },
   // Next user when the right arrow is clicked inside the modal window.
   rightArrow: () => {
     if(cardNumber < fetches[0].results.length - 1) {

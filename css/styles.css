@@ -1,6 +1,7 @@
 /*===========================================
 // Import partials
 //==========================================*/
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 /*===========================================
 // Utilities partials
 //==========================================*/
@@ -15,7 +16,13 @@
 //==========================================*/
 .openBox {
   animation-name: modalopen;
-  animation-duration: 1s; }
+  animation-duration: .3s;
+  transition: all .3s linear; }
+
+.stretch {
+  animation-name: stretch;
+  animation-duration: .3s;
+  transition: transform .3s linear; }
 
 .nextBox {
   animation-name: modalNext;
@@ -37,46 +44,76 @@
 // Keyframes
 //==========================================*/
 @keyframes modalopen {
-  from {
-    transform: translate3d(143%, -50%, 0);
-    opacity: 0; }
-  to {
-    transform: translate3d(143%, 9%, 0);
-    opacity: 1; } }
+  0% {
+    opacity: 0;
+    transform: translate3d(700px, 115px, 0);
+    will-change: transform, opacity, padding, width, height;
+    padding: 0;
+    width: 0;
+    height: 0; }
+  50% {
+    opacity: 1;
+    will-change: transform, opacity, padding, width, height; }
+  100% {
+    height: 0;
+    padding: 20px;
+    width: 23%;
+    transform: translate3d(563px, 115px, 0);
+    will-change: transform, opacity, padding, width, height; } }
+@keyframes stretch {
+  0% {
+    transform: translate3d(563px, 115px, 0);
+    height: 0; }
+  100% {
+    transform: translate3d(563px, 115px, 0);
+    height: 400px; } }
 @keyframes modalNext {
   0% {
-    transform: translate3d(143%, 9%, 0); }
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity; }
   15% {
-    transform: translate3d(-120%, 9%, 0);
+    transform: translate3d(-120%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 0; }
   30% {
     opacity: 0; }
   45% {
-    transform: translate3d(400%, 9%, 0); }
+    transform: translate3d(400%, 115px, 0);
+    will-change: transform, opacity; }
   60% {
-    opacity: 0; }
+    opacity: 0;
+    will-change: transform, opacity; }
   85% {
-    opacity: 1; }
+    opacity: 1;
+    will-change: transform, opacity; }
   100% {
-    transform: translate3d(143%, 9%, 0);
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 1; } }
 @keyframes modalPrev {
   0% {
-    transform: translate3d(143%, 9%, 0); }
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity; }
   15% {
-    transform: translate3d(400%, 9%, 0);
+    transform: translate3d(400%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 0; }
   30% {
-    opacity: 0; }
+    opacity: 0;
+    will-change: transform, opacity; }
   45% {
-    transform: translate3d(-120%, 9%, 0); }
+    transform: translate3d(-120%, 115px, 0);
+    will-change: transform, opacity; }
   60% {
-    opacity: 0; }
+    opacity: 0;
+    will-change: transform, opacity; }
   85% {
-    opacity: 1; }
+    opacity: 1;
+    will-change: transform, opacity; }
   100% {
-    transform: translate3d(143%, 9%, 0);
-    opacity: 1; } }
+    transform: translate3d(143%, 115px, 0);
+    opacity: 1;
+    will-change: transform, opacity; } }
 /*===========================================
 // Base partials
 //==========================================*/
@@ -413,11 +450,13 @@ footer {
   display: grid;
   max-width: 80%;
   margin: 0 auto;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-gap: 30px; }
   .container a {
     text-decoration: none;
     color: #000; }
+    .container a:hover {
+      cursor: pointer; }
 
 .card {
   display: flex;
@@ -437,6 +476,9 @@ footer {
     transform: scale(1.01);
     box-shadow: 0 27px 15px -20px rgba(0, 0, 0, 0.2); }
 
+.picture {
+  margin: 20px 10px 20px 20px; }
+
 .modal {
   display: none;
   position: fixed;
@@ -453,7 +495,8 @@ footer {
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   position: fixed;
-  transform: translate3d(143%, 9%, 0);
+  transform: translate3d(563px, 115px, 0);
+  height: 400px;
   padding: 20px;
   width: 23%;
   text-align: center;
@@ -473,9 +516,11 @@ footer {
 // Typography
 //==========================================*/
 .headline {
+  font-family: "Source Sans Pro", sans-serif;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: lighter;
+  letter-spacing: 1px;
   align-self: center; }
 
 .card h3 {
@@ -486,33 +531,25 @@ footer {
   margin: 0;
   color: rgba(0, 0, 0, 0.5);
   font-size: 13px; }
+  .card p:last-of-type {
+    text-transform: capitalize; }
 
-.modal-p {
+.modalwindow__p {
   margin: 2px auto;
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   width: 90%; }
-
-.modal-p2 {
+  .modalwindow__p--border {
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px; }
+.modalwindow__p2 {
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px; }
-
-.modal-p2-top {
-  padding-top: 10px; }
-
-.modal-p-border {
-  text-transform: capitalize;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 20px; }
-
-.location {
-  text-transform: capitalize; }
-
-.picture {
-  margin: 20px 10px 20px 20px; }
-
-.city {
-  text-transform: capitalize; }
+  .modalwindow__p2--top {
+    padding-top: 10px; }
+  .modalwindow__p2--location {
+    text-transform: capitalize; }
 
 /*===========================================
 // Navigation
@@ -546,8 +583,7 @@ footer {
   color: rgba(0, 0, 0, 0.2);
   font-weight: bold;
   font-size: 30px;
-  transition: 0.6s ease;
-  background-color: rgba(0, 0, 0, 0); }
+  transition: 0.6s ease; }
 
 .next {
   right: 0; }

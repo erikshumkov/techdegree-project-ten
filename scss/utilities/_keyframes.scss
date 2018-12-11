@@ -3,64 +3,99 @@
 //==========================================*/
 
 @keyframes modalopen {
-  from {
-    transform: translate3d(143%, -50%, 0);
+  0% {
     opacity: 0;
+    transform: translate3d(700px, 115px, 0);
+    will-change: transform, opacity, padding, width, height;
+    padding: 0;
+    width: 0;
+    height: 0;
   }
-  to {
-    transform: translate3d(143%, 9%, 0);
+  50% {
     opacity: 1;
+    will-change: transform, opacity, padding, width, height;
+  }
+  100% {
+    height: 0;
+    padding: 20px;
+    width: 23%;
+    transform: translate3d(563px, 115px, 0);
+    will-change: transform, opacity, padding, width, height;
+  }
+}
+
+@keyframes stretch {
+  0% {
+    transform: translate3d(563px, 115px, 0);
+    height: 0;
+  }
+  100% {
+    transform: translate3d(563px, 115px, 0);
+    height: 400px;
   }
 }
 
 @keyframes modalNext {
   0% {
-    transform: translate3d(143%, 9%, 0);
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity;
   }
   15% {
-    transform: translate3d(-120%, 9%, 0);
+    transform: translate3d(-120%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 0;
   }
   30% {
     opacity: 0;
   }
   45% {
-    transform: translate3d(400%, 9%, 0);
+    transform: translate3d(400%, 115px, 0);
+    will-change: transform, opacity;
   }
   60% {
     opacity: 0;
+    will-change: transform, opacity;
   }
   85% {
     opacity: 1;
+    will-change: transform, opacity;
   }
   100% {
-    transform: translate3d(143%, 9%, 0);
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 1;
   }
 }
 
 @keyframes modalPrev {
   0% {
-    transform: translate3d(143%, 9%, 0);
+    transform: translate3d(143%, 115px, 0);
+    will-change: transform, opacity;
   }
   15% {
-    transform: translate3d(400%, 9%, 0);
+    transform: translate3d(400%, 115px, 0);
+    will-change: transform, opacity;
     opacity: 0;
   }
   30% {
     opacity: 0;
+    will-change: transform, opacity;
   }
   45% {
-    transform: translate3d(-120%, 9%, 0);
+    transform: translate3d(-120%, 115px, 0);
+    will-change: transform, opacity;
   }
   60% {
     opacity: 0;
+    will-change: transform, opacity;
   }
   85% {
     opacity: 1;
+    will-change: transform, opacity;
   }
   100% {
-    transform: translate3d(143%, 9%, 0);
+    transform: translate3d(143%, 115px, 0);
     opacity: 1;
+    will-change: transform, opacity;
   }
 }
