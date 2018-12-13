@@ -29,7 +29,7 @@ fetchIt('https://randomuser.me/api/?results=12&nat=us')
         container.appendChild(aTag);
 
         let html = `
-        <div class="card" onclick="getDivIndex(this)">
+        <div class="card">
           <div class="picture">
             <img src='${results[i].picture.large}'>
           </div>
@@ -41,13 +41,17 @@ fetchIt('https://randomuser.me/api/?results=12&nat=us')
         </div>
         `;
         aTag.innerHTML = html;
-      }
-  });
+      }});
 
   container.addEventListener( 'click', (e) => {
-      const tag = e.target.tagName;
       const divClassName = e.target.className;
-      if (tag == 'A' || divClassName == 'card' || tag == 'P' || tag == 'H3' || tag == 'IMG') {
+      const card = document.querySelectorAll('.card');
+      if (divClassName == 'card') {
+        for(var i = 0; i < card.length; i++) {
+          if(card[i] == e.target){
+            cardNumber = i;
+          }
+        }
         modalWindow.classList.add('openBox');
         openModal();
         setTimeout( () => { modalWindow.classList.add('stretch'); }, 300);
@@ -73,14 +77,6 @@ function clickOutside(e) {
     modal.style.display = "none";
     modalWindow.innerHTML = '';
   }
-}
-
-// Get the index of selected card div.
-// Credit to: https://stackoverflow.com/questions/44185632/get-index-of-class-element-with-inline-onclick-pure-js-no-jquery
-function getDivIndex(div) {
-  const cards = document.querySelectorAll('.card');
-  const divs = Array.prototype.slice.call( cards, 0 );
-  cardNumber = divs.indexOf(event.currentTarget);
 }
 
 function modalWindowContent() {
@@ -132,13 +128,7 @@ function searchFunction() {
 
 function addAnimation(animationType) {
   modalWindow.classList.add(`${animationType}`);
-  newInfo();
-}
-
-// New member content.
-function newInfo() {
-  modalWindow.innerHTML = '';
-  modalWindowContent();
+  return modalWindow.innerHTML = '';
 }
 
 const actions = {
@@ -151,7 +141,9 @@ const actions = {
         cardNumber = 0;
         addAnimation("nextBox");
     }
-    setTimeout( () => { modalWindow.className = "modal__window"; }, 1600);
+    setTimeout( () => { modalWindow.className = "modal__window";
+    modalWindowContent();
+  }, 600);
   },
   // Previous user when the left arrow is clicked inside the modal window.
   leftArrow: () => {
@@ -162,6 +154,8 @@ const actions = {
       cardNumber = fetches[0].results.length - 1;
       addAnimation("prevBox");
     }
-    setTimeout( () => { modalWindow.className = "modal__window"; }, 1600);
+    setTimeout( () => { modalWindow.className = "modal__window";
+    modalWindowContent();
+  }, 600);
   }
 };
